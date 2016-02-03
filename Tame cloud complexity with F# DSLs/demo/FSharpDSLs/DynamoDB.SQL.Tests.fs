@@ -1,4 +1,4 @@
-﻿module DynamoDB.SQL.Tests
+﻿module DynamoDB.Tests
 
 open FsUnit
 open NUnit.Framework
