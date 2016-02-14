@@ -1,15 +1,29 @@
-﻿// use let to bind values and functions to names
+﻿// use let to bind values to names
+// everything is immutable by default
 let x = 42
 
-let multiply x y = x * y
+// mutable states requires extra 'mutable' keyword
+let mutable y = 42
+y <- 24 
+// note <- is different from assignment operator = 
+// as it's a "destructive assignment"
 
-// function arguments can be prefixed to create new function
+// also use 'let' to bind functions to names
+let inline multiply x y = x * y
+
+// type inference works out types of 'x' and 'y'
+
+// function arguments can be fixed to create new function
+// aka partial application
 let double = multiply 2
 
-// lambdas everywhere
+// lambdas
 List.filter (fun n -> n % 2 = 0) [1..10]
 
 // use pipes |> to chain nested functions calls
+[1..10] |> List.filter (fun n -> n % 2 = 0)
+
+// you can nest many function calls this way
 let termFrequency words =
     words
     |> Seq.groupBy id
@@ -22,7 +36,17 @@ let termFrequency words =
 let a, b = 42, "42"
 
 // also whitespace matters for compilation too
+// but we already use whitespace to align our code for readibility
+// so why force {} & whitespaces when whitespaces can do both?
 
+
+// you can have classes, & interfaces, etc. too
+type IPerson = 
+    abstract member Name : string
+
+type Person (name:string) =
+    interface IPerson with
+        member __.Name = name
 
 
 [<Measure>]
@@ -43,7 +67,7 @@ let john = { Name = "John Doe"; Salary = 40000<Pounds> }
 let promote raise employee = 
     { employee with Salary = employee.Salary + raise }
 
-let johnAfterPromotion = promote 5000<Pounds> john
+let johnAfterPromotion = promote 5000<Pence> john
 
 
 // union types, far more powerful than enums

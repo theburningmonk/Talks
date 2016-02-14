@@ -1,3 +1,9 @@
 source https://www.nuget.org/api/v2
 nuget FParsec
+nuget FsCheck
 nuget FsUnit
+
+group Test
+source https://www.nuget.org/api/v2
+
+nuget FsCheck
